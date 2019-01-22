@@ -9,7 +9,7 @@ function [Sn, x_j] = RousseeuwCrouxSn(X)
 %   principle should be more robust to skewed distributions.
 %
 %   The outputs of this function have been validated against equivalent
-%   function in Maple(tm).
+%   function in MAPLE(tm).
 %
 % Example:          
 %                   % basic example
@@ -28,13 +28,13 @@ function [Sn, x_j] = RousseeuwCrouxSn(X)
 %
 % Requires:         none
 %
-% See also:         mad.m
+% See also:         mad.m [Statistics Toolbox]
 %
 % Author(s):        Pete R Jones <petejonze@gmail.com>
 % 
 % Version History:  19/04/2016	PJ  Initial version
 %                   09/08/2018	PJ  Added support for multi-dimensional inputs
-%                   22/01/219	PJ  Added error checking for row vectors and simplified 
+%                   22/01/2019	PJ  Added error checking for row vectors and simplified 
 %                                               
 %   
 % Copyright 2019 : P R Jones
@@ -48,13 +48,13 @@ function [Sn, x_j] = RousseeuwCrouxSn(X)
     n = size(X,1);
     
     % Set c: bias correction factor for finite sample size. NB: the values
-    % used here match those used in the MAPLE implementation of Sn. Details
-    % regarding the computation of the finite sample correction factors can
-    % be found in Pison, Aelst, & Willems (2002), Metrika, 55(1), 111-123.
+    % used here match those used in the MAPLE implementation of Sn. For
+    % more regarding the computation of the finite sample correction 
+    % factors, see Pison, Aelst & Willems (2002), Metrika, 55(1), 111-123.
     if n < 10
         cc = [NaN 0.743 1.851 0.954 1.351 0.993 1.198 1.005 1.131];
         c = cc(n);
-    elseif mod(n,2)==0  % n is odd
+    elseif mod(n,2)==1  % n is odd
         c = n/(n-.9);
     else                % n is even
         c = 1;
